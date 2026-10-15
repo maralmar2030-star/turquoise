@@ -1,0 +1,842 @@
+<title>تركواز العقارية</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;600;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: right-to-left limestone page; turquoise stone as the single bold material; villa facade hero; tools sit in framed "plan sheets" */
+:root{
+  --bg:#F2F5F3;
+  --surface:#FFFFFF;
+  --sunk:#E6ECE9;
+  --ink:#0E2A2B;
+  --muted:#556B6A;
+  --line:#CFDAD6;
+  --turq:#139A91;
+  --turq-strong:#0B5C57;
+  --turq-soft:#D3EEEB;
+  --brass:#A67A3D;
+  --on-turq:#FFFFFF;
+  --ok:#1F8A4C; --warn:#B7791F; --crit:#B83A3A;
+  --font-display:"Reem Kufi","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --font-body:"IBM Plex Sans Arabic",Tahoma,"Segoe UI",sans-serif;
+  --font-data:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --r:14px;
+  --shadow:0 1px 2px rgba(14,42,43,.06),0 12px 32px -16px rgba(14,42,43,.25);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0A1819;--surface:#102527;--sunk:#0D2021;--ink:#E4EFED;--muted:#93AAA8;--line:#22403F;
+  --turq:#35C3B8;--turq-strong:#7FDCD3;--turq-soft:#123C3A;--brass:#D3A869;--on-turq:#062221;
+  --ok:#4CC27E;--warn:#E3A84A;--crit:#E06B6B;--shadow:0 12px 32px -16px rgba(0,0,0,.6);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0A1819;--surface:#102527;--sunk:#0D2021;--ink:#E4EFED;--muted:#93AAA8;--line:#22403F;
+  --turq:#35C3B8;--turq-strong:#7FDCD3;--turq-soft:#123C3A;--brass:#D3A869;--on-turq:#062221;
+  --ok:#4CC27E;--warn:#E3A84A;--crit:#E06B6B;--shadow:0 12px 32px -16px rgba(0,0,0,.6);color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.75}
+.site{direction:rtl}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--turq);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--font-display);line-height:1.25;text-wrap:balance;margin:0}
+h2{font-size:clamp(1.7rem,3.4vw,2.5rem)}
+h3{font-size:1.3rem}
+p{margin:0}
+.num{font-family:var(--font-data);font-variant-numeric:tabular-nums}
+.eyebrow{font-size:.82rem;font-weight:600;color:var(--turq);letter-spacing:.02em;display:flex;align-items:center;gap:8px}
+.eyebrow::before{content:"";width:10px;height:10px;background:var(--turq);transform:rotate(45deg);border-radius:2px}
+section{padding-block:clamp(56px,8vw,96px)}
+.sec-head{display:grid;gap:12px;max-width:640px;margin-bottom:36px}
+.sec-head p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;font:600 1rem var(--font-body);padding:12px 22px;border-radius:999px;border:1.5px solid transparent;cursor:pointer;text-decoration:none;transition:transform .15s,background .15s}
+.btn-primary{background:var(--turq);color:var(--on-turq)}
+.btn-primary:hover{transform:translateY(-2px)}
+.btn-ghost{border-color:var(--line);background:var(--surface);color:var(--ink)}
+.btn-ghost:hover{border-color:var(--turq)}
+
+/* Header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:68px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none}
+.brand svg{width:38px;height:38px;flex:none}
+.brand b{font-family:var(--font-display);font-size:1.5rem;line-height:1}
+.brand small{display:block;font-size:.72rem;color:var(--muted);font-weight:500}
+.links{display:flex;gap:4px;list-style:none;margin:0;padding:0}
+.links a{display:block;padding:8px 12px;border-radius:999px;text-decoration:none;font-weight:500;font-size:.95rem;color:var(--muted)}
+.links a:hover{color:var(--ink)}
+.links a.active{color:var(--turq-strong);background:var(--turq-soft)}
+.nav-cta{display:flex;gap:8px;align-items:center}
+.icon-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer}
+.menu-btn{display:none}
+@media (max-width:960px){
+  .links{display:none;position:absolute;inset-inline:0;top:100%;flex-direction:column;background:var(--surface);border-bottom:1px solid var(--line);padding:12px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px))}
+  .links.open{display:flex}
+  .links a{padding:12px 14px;border-radius:10px}
+  .menu-btn{display:grid}
+  .nav-cta .btn{display:none}
+}
+
+/* Hero */
+.hero{padding-block:clamp(40px,6vw,72px) clamp(48px,7vw,88px)}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(24px,5vw,64px);align-items:center}
+.hero-grid>*{min-width:0}
+.hero h1{font-size:clamp(2.3rem,5.6vw,4.3rem);font-weight:700;letter-spacing:-.01em}
+.hero h1 em{font-style:normal;color:var(--turq)}
+.hero .lead{font-size:1.15rem;color:var(--muted);max-width:52ch;margin-top:18px}
+.hero .actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.finder{margin-top:34px;display:grid;gap:10px}
+.finder span{font-size:.9rem;color:var(--muted);font-weight:600}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);padding:8px 14px;border-radius:999px;font:500 .92rem var(--font-body);cursor:pointer;text-decoration:none}
+.chip:hover{border-color:var(--turq);color:var(--turq-strong)}
+.facade{position:relative;background:var(--sunk);border-radius:28px 28px 180px 28px;padding:20px;overflow:hidden}
+.facade svg{width:100%;height:auto;display:block}
+.f-stroke{stroke:var(--ink);fill:none;stroke-width:2}
+.f-wall{fill:var(--surface);stroke:var(--ink);stroke-width:2}
+.f-glass{fill:var(--turq-soft);stroke:var(--ink);stroke-width:2}
+.f-turq{fill:var(--turq)}
+.f-ground{stroke:var(--muted);stroke-width:1.5;stroke-dasharray:4 6}
+.f-text{fill:var(--muted);font:500 11px var(--font-data)}
+.badge-float{position:absolute;inset-inline-start:22px;bottom:22px;background:var(--surface);border-radius:14px;padding:12px 14px;box-shadow:var(--shadow);display:flex;gap:10px;align-items:center;max-width:calc(100% - 44px)}
+.badge-float .k{width:36px;height:36px;border-radius:10px;background:var(--turq);color:var(--on-turq);display:grid;place-items:center;flex:none}
+.badge-float b{display:block;font-size:.95rem}
+.badge-float small{color:var(--muted);font-size:.8rem}
+@media (max-width:880px){.hero-grid{grid-template-columns:1fr}.facade{border-radius:24px 24px 120px 24px}}
+
+/* Stats strip */
+.strip{background:var(--turq-strong);color:var(--bg)}
+:root[data-theme="dark"] .strip{color:var(--on-turq)}
+.strip .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-block:28px}
+.strip div b{display:block;font-family:var(--font-data);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:500}
+.strip div span{font-size:.9rem;opacity:.85}
+@media (max-width:700px){.strip .wrap{grid-template-columns:repeat(2,1fr)}}
+
+/* Services */
+.services{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:28px;display:grid;grid-template-rows:auto auto auto 1fr auto;gap:14px;scroll-margin-top:90px}
+.svc .ic{width:52px;height:52px;border-radius:14px;background:var(--turq-soft);color:var(--turq-strong);display:grid;place-items:center}
+.svc .tag{font-family:var(--font-data);font-size:.78rem;color:var(--brass)}
+.svc p{color:var(--muted)}
+.svc ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;align-content:start}
+.svc li{display:flex;gap:10px;font-size:.95rem}
+.svc li::before{content:"";flex:none;width:7px;height:7px;margin-top:.7em;background:var(--turq);transform:rotate(45deg)}
+.svc .more{color:var(--turq-strong);font-weight:600;text-decoration:none;font-size:.95rem}
+.svc.featured{background:var(--turq-strong);border-color:var(--turq-strong);color:var(--bg)}
+.svc.featured p,.svc.featured li{color:color-mix(in srgb,var(--bg) 85%,transparent)}
+.svc.featured .ic{background:color-mix(in srgb,var(--bg) 14%,transparent);color:var(--bg)}
+.svc.featured .tag{color:var(--turq-soft)}
+.svc.featured li::before{background:var(--bg)}
+.svc.featured .more{color:var(--bg)}
+:root[data-theme="dark"] .svc.featured,:root[data-theme="dark"] .svc.featured p,:root[data-theme="dark"] .svc.featured li,:root[data-theme="dark"] .svc.featured .more{color:var(--on-turq)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .svc.featured,:root:not([data-theme="light"]) .svc.featured p,:root:not([data-theme="light"]) .svc.featured li,:root:not([data-theme="light"]) .svc.featured .more{color:var(--on-turq)}
+:root:not([data-theme="light"]) .strip{color:var(--on-turq)}}
+@media (max-width:900px){.services{grid-template-columns:1fr}}
+
+/* Villa timeline */
+.alt{background:var(--sunk)}
+.phases{display:grid;grid-template-columns:280px 1fr;gap:28px;align-items:start}
+.phases>*{min-width:0}
+.phase-list{list-style:none;margin:0;padding:0;display:grid;gap:6px;position:relative}
+.phase-list button{width:100%;text-align:start;display:flex;gap:12px;align-items:center;background:transparent;border:1px solid transparent;border-radius:12px;padding:12px 14px;font:500 1rem var(--font-body);color:var(--muted);cursor:pointer}
+.phase-list button .n{width:30px;height:30px;flex:none;border-radius:50%;border:1.5px solid var(--line);display:grid;place-items:center;font:500 .85rem var(--font-data);background:var(--surface)}
+.phase-list button[aria-selected="true"]{background:var(--surface);border-color:var(--line);color:var(--ink);box-shadow:var(--shadow)}
+.phase-list button[aria-selected="true"] .n{background:var(--turq);border-color:var(--turq);color:var(--on-turq)}
+.phase-panel{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,3vw,34px);display:grid;gap:18px}
+.phase-meta{display:flex;flex-wrap:wrap;gap:10px}
+.pill{font-size:.82rem;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--turq-soft);color:var(--turq-strong)}
+.pill.brass{background:color-mix(in srgb,var(--brass) 16%,transparent);color:var(--brass)}
+.phase-panel ul{margin:0;padding-inline-start:20px;display:grid;gap:6px;color:var(--muted)}
+.progress{height:8px;background:var(--sunk);border-radius:99px;overflow:hidden}
+.progress i{display:block;height:100%;background:var(--turq);border-radius:99px;transition:width .4s}
+@media (max-width:800px){.phases{grid-template-columns:1fr}.phase-list{grid-auto-flow:column;grid-auto-columns:max-content;overflow-x:auto;padding-bottom:6px}.phase-list button .t{white-space:nowrap}}
+
+/* Tools */
+.tabs{display:inline-flex;background:var(--sunk);border-radius:999px;padding:4px;gap:4px;margin-bottom:22px;flex-wrap:wrap}
+.tabs button{border:0;background:transparent;padding:10px 18px;border-radius:999px;font:600 .95rem var(--font-body);color:var(--muted);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.tool{display:grid;grid-template-columns:1fr 1.1fr;gap:20px}
+.tool>*{min-width:0}
+.sheet{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:clamp(20px,3vw,30px);display:grid;gap:20px;align-content:start}
+.field{display:grid;gap:8px}
+.field label,.field .lbl{font-weight:600;font-size:.95rem;display:flex;justify-content:space-between;gap:8px}
+.field output{color:var(--turq-strong);font-family:var(--font-data)}
+input[type=range]{width:100%;accent-color:var(--turq)}
+input[type=number],input[type=text],input[type=tel],select,textarea{width:100%;font:500 1rem var(--font-body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:11px 14px}
+textarea{min-height:110px;resize:vertical}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--turq);outline-offset:1px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.seg label{position:relative;cursor:pointer}
+.seg input{position:absolute;opacity:0;inset:0}
+.seg span{display:grid;text-align:center;padding:10px 6px;border:1px solid var(--line);border-radius:10px;font-weight:600;font-size:.92rem;background:var(--bg)}
+.seg span small{font-weight:400;color:var(--muted);font-size:.75rem}
+.seg input:checked+span{border-color:var(--turq);background:var(--turq-soft);color:var(--turq-strong)}
+.seg input:focus-visible+span{outline:2px solid var(--turq);outline-offset:2px}
+.checks{display:grid;gap:8px}
+.checks label{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 14px;border:1px solid var(--line);border-radius:10px;cursor:pointer;font-weight:500}
+.checks label span:first-child{display:flex;gap:10px;align-items:center}
+.checks input{accent-color:var(--turq);width:18px;height:18px}
+.checks small{color:var(--muted);font-family:var(--font-data)}
+.result{background:var(--turq-strong);color:var(--bg);border-radius:var(--r);padding:clamp(20px,3vw,30px);display:grid;gap:18px;align-content:start}
+:root[data-theme="dark"] .result{color:var(--on-turq)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .result{color:var(--on-turq)}}
+.result .big{font-family:var(--font-data);font-size:clamp(1.6rem,3.6vw,2.4rem);line-height:1.2}
+.result .sub{opacity:.85;font-size:.92rem}
+.kv{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.kv div{background:color-mix(in srgb,currentColor 9%,transparent);border-radius:10px;padding:10px 12px}
+.kv b{display:block;font-family:var(--font-data);font-weight:500;font-size:1.1rem}
+.kv span{font-size:.8rem;opacity:.85}
+.bar{display:flex;height:12px;border-radius:99px;overflow:hidden;gap:2px}
+.bar i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:.82rem}
+.legend span{display:flex;gap:6px;align-items:center}
+.legend i{width:10px;height:10px;border-radius:3px;display:inline-block}
+.tbl-wrap{overflow-x:auto}
+table.pay{width:100%;border-collapse:collapse;font-size:.88rem}
+table.pay td{padding:7px 0;border-top:1px solid color-mix(in srgb,currentColor 18%,transparent)}
+table.pay td:last-child{text-align:end;font-family:var(--font-data)}
+.note{font-size:.8rem;opacity:.8}
+.meter{height:10px;background:color-mix(in srgb,currentColor 15%,transparent);border-radius:99px;overflow:hidden}
+.meter i{display:block;height:100%;border-radius:99px;transition:width .35s,background .35s}
+.route{display:grid;gap:10px}
+.route li{list-style:none}
+.route ol{margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.route ol li{counter-increment:s;display:flex;gap:10px}
+.route ol li::before{content:counter(s);flex:none;width:24px;height:24px;border-radius:50%;background:color-mix(in srgb,currentColor 16%,transparent);display:grid;place-items:center;font:500 .8rem var(--font-data)}
+@media (max-width:880px){.tool{grid-template-columns:1fr}}
+
+/* Values */
+.values{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.values div{padding:26px 20px 0 20px;border-inline-start:1px solid var(--line);display:grid;gap:8px;align-content:start}
+.values div:first-child{border-inline-start:0;padding-inline-start:0}
+.values b{font-family:var(--font-display);font-size:1.15rem}
+.values p{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){.values{grid-template-columns:1fr 1fr;row-gap:24px}.values div{border-inline-start:0;padding-inline:0}}
+@media (max-width:480px){.values{grid-template-columns:1fr}}
+
+/* Identity */
+.idgrid{display:grid;grid-template-columns:1.2fr 1fr;gap:20px}
+.idgrid>*{min-width:0}
+.idcard{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:24px;display:grid;gap:16px;align-content:start}
+.idcard h3{font-size:1.05rem}
+.logos{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:12px}
+.logos>div{border-radius:12px;display:grid;place-items:center;padding:22px 10px;min-height:150px}
+.lg-main{background:var(--bg);border:1px solid var(--line)}
+.lg-rev{background:var(--turq-strong)}
+.lg-turq{background:var(--turq)}
+.lockup{display:flex;align-items:center;gap:12px}
+.lockup svg{width:56px;height:56px}
+.lockup b{font-family:var(--font-display);font-size:2rem;line-height:1}
+.lockup small{display:block;font-size:.78rem;color:var(--muted)}
+.swatches{display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.sw{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--surface);cursor:pointer;text-align:start;padding:0;font:inherit;color:var(--ink)}
+.sw i{display:block;height:70px}
+.sw span{display:grid;padding:8px 10px;font-size:.8rem}
+.sw span b{font-weight:600}
+.sw span code{font-family:var(--font-data);color:var(--muted);font-size:.75rem}
+.type-spec{display:grid;gap:14px}
+.type-spec div{display:grid;gap:2px;border-top:1px solid var(--line);padding-top:12px}
+.type-spec small{color:var(--muted);font-size:.8rem}
+.pattern{height:90px;border-radius:12px;background-color:var(--turq-strong);
+  background-image:linear-gradient(45deg,var(--turq) 25%,transparent 25%,transparent 75%,var(--turq) 75%),linear-gradient(45deg,var(--turq) 25%,transparent 25%,transparent 75%,var(--turq) 75%);
+  background-size:28px 28px;background-position:0 0,14px 14px;opacity:.95}
+@media (max-width:900px){.idgrid{grid-template-columns:1fr}.swatches{grid-template-columns:repeat(3,1fr)}.logos{grid-template-columns:1fr 1fr}.lg-main{grid-column:1/-1}}
+
+/* FAQ */
+.faq{display:grid;gap:10px;max-width:860px}
+.faq details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:4px 20px}
+.faq summary{cursor:pointer;list-style:none;font-weight:600;padding:14px 0;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font:500 1.3rem var(--font-data);color:var(--turq)}
+.faq details[open] summary::after{content:"−"}
+.faq details p{color:var(--muted);padding-bottom:16px}
+
+/* Contact */
+.contact{display:grid;grid-template-columns:1fr 1.2fr;gap:24px}
+.contact>*{min-width:0}
+.cinfo{display:grid;gap:12px;align-content:start}
+.crow{display:flex;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+.crow .ic{width:40px;height:40px;border-radius:10px;background:var(--turq-soft);color:var(--turq-strong);display:grid;place-items:center;flex:none}
+.crow div{flex:1;min-width:0}
+.crow small{color:var(--muted);display:block;font-size:.8rem}
+.crow b{font-weight:600;user-select:all;direction:ltr;unicode-bidi:isolate;display:inline-block}
+.crow button{border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:8px;padding:6px 10px;font:500 .8rem var(--font-body);cursor:pointer}
+form.sheet .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ok-msg{background:var(--turq-soft);color:var(--turq-strong);border-radius:10px;padding:12px 14px;font-weight:600}
+@media (max-width:860px){.contact{grid-template-columns:1fr}form.sheet .row2{grid-template-columns:1fr}}
+
+footer{border-top:1px solid var(--line);padding-block:32px;color:var(--muted);font-size:.9rem}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+.toast{position:fixed;bottom:calc(20px + env(safe-area-inset-bottom,0px));inset-inline:0;margin-inline:auto;width:max-content;max-width:90vw;background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:600;font-size:.9rem;z-index:99}
+@keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+.hero h1,.hero .lead,.facade{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}
+.hero .lead{animation-delay:.08s}.facade{animation-delay:.15s}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="mark" viewBox="0 0 48 48">
+      <path d="M24 2 46 24 24 46 2 24Z" fill="var(--mark-fill, var(--turq))"/>
+      <path d="M24 12.5 35 22.5V35H13V22.5Z" fill="var(--mark-cut, var(--bg))"/>
+      <circle cx="24" cy="25.5" r="3.2" fill="var(--mark-fill, var(--turq))"/>
+      <path d="M22.6 27h2.8l.9 5.5h-4.6Z" fill="var(--mark-fill, var(--turq))"/>
+    </symbol>
+    <pattern id="mashrabiya" width="14" height="14" patternUnits="userSpaceOnUse">
+      <rect width="14" height="14" class="f-turq"/>
+      <path d="M7 1.5 12.5 7 7 12.5 1.5 7Z" fill="var(--turq-soft)"/>
+    </pattern>
+  </defs>
+</svg>
+
+<div class="site" dir="rtl" lang="ar">
+<header class="top">
+  <div class="wrap nav">
+    <a class="brand" href="#home" aria-label="تركواز - الرئيسية">
+      <svg><use href="#mark"/></svg>
+      <span><b>تركواز</b><small>للعقارات والمقاولات</small></span>
+    </a>
+    <ul class="links" id="links">
+      <li><a href="#home">الرئيسية</a></li>
+      <li><a href="#services">خدماتنا</a></li>
+      <li><a href="#villas">رحلة الفيلا</a></li>
+      <li><a href="#tools">الأدوات الذكية</a></li>
+      <li><a href="#identity">الهوية</a></li>
+      <li><a href="#faq">الأسئلة</a></li>
+      <li><a href="#contact">تواصل</a></li>
+    </ul>
+    <div class="nav-cta">
+      <button class="icon-btn" id="themeBtn" aria-label="تبديل الوضع الليلي">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+      <a class="btn btn-primary" href="#contact">اطلب استشارة</a>
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="القائمة" aria-expanded="false" aria-controls="links">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">شركة عقارية متكاملة</p>
+      <h1 style="margin-top:14px">نحصّل حقّك، نسوّي ديونك، <em>ونسلّمك مفتاح فيلتك.</em></h1>
+      <p class="lead">تركواز تجمع ثلاث خدمات تحت سقف واحد: تحصيل المستحقات العقارية، تخليص المديونيات بالطرق الودية والنظامية، وبناء الفلل وتشطيبها حتى تسليم المفتاح.</p>
+      <div class="actions">
+        <a class="btn btn-primary" href="#tools">احسب تكلفة فيلتك</a>
+        <a class="btn btn-ghost" href="#services">تعرّف على خدماتنا</a>
+      </div>
+      <div class="finder">
+        <span>ما الذي تحتاجه اليوم؟</span>
+        <div class="chips">
+          <a class="chip" href="#svc-collect">لي إيجارات متأخرة</a>
+          <a class="chip" href="#tools" data-tab="debt">عليّ أو لي مديونية</a>
+          <a class="chip" href="#tools" data-tab="villa">أريد بناء فيلا</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="facade" aria-label="رسم واجهة فيلا حديثة">
+      <svg viewBox="0 0 520 400" role="img">
+        <line x1="10" y1="350" x2="510" y2="350" class="f-ground"/>
+        <!-- ground floor -->
+        <rect x="60" y="200" width="300" height="150" class="f-wall"/>
+        <!-- upper cantilever -->
+        <rect x="130" y="110" width="300" height="90" class="f-wall"/>
+        <rect x="120" y="100" width="320" height="10" fill="var(--ink)"/>
+        <!-- mashrabiya screen -->
+        <rect x="360" y="200" width="70" height="150" fill="url(#mashrabiya)" stroke="var(--ink)" stroke-width="2"/>
+        <!-- windows -->
+        <rect x="150" y="130" width="120" height="50" class="f-glass"/>
+        <line x1="210" y1="130" x2="210" y2="180" class="f-stroke"/>
+        <rect x="290" y="130" width="120" height="50" class="f-glass"/>
+        <rect x="80" y="230" width="90" height="70" class="f-glass"/>
+        <!-- door -->
+        <rect x="200" y="250" width="56" height="100" fill="var(--turq-strong)" stroke="var(--ink)" stroke-width="2"/>
+        <circle cx="246" cy="300" r="3" fill="var(--bg)"/>
+        <rect x="190" y="240" width="76" height="6" fill="var(--ink)"/>
+        <!-- planter -->
+        <rect x="280" y="320" width="60" height="30" class="f-wall"/>
+        <circle cx="296" cy="312" r="12" class="f-turq" opacity=".55"/>
+        <circle cx="318" cy="306" r="15" class="f-turq" opacity=".8"/>
+        <!-- dimension line -->
+        <line x1="60" y1="374" x2="430" y2="374" class="f-stroke" stroke-width="1"/>
+        <line x1="60" y1="368" x2="60" y2="380" class="f-stroke" stroke-width="1"/>
+        <line x1="430" y1="368" x2="430" y2="380" class="f-stroke" stroke-width="1"/>
+        <text x="245" y="392" text-anchor="middle" class="f-text">18.50 m</text>
+        <line x1="470" y1="100" x2="470" y2="350" class="f-stroke" stroke-width="1"/>
+        <text x="482" y="230" class="f-text" transform="rotate(90 482 230)">G+1</text>
+      </svg>
+      <div class="badge-float">
+        <span class="k"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="8" cy="15" r="4"/><path d="m11 12 9-9M17 6l3 3M15 8l2 2"/></svg></span>
+        <span><b>تسليم مفتاح</b><small>من المخطط حتى آخر قطعة إنارة</small></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <div><b class="num">+12</b><span>سنة خبرة في السوق العقاري</span></div>
+    <div><b class="num">85</b><span>فيلا سُلّمت مفاتيحها</span></div>
+    <div><b class="num">94%</b><span>من ملفات التحصيل أُغلقت بنجاح</span></div>
+    <div><b class="num">10</b><span>سنوات ضمان على الهيكل</span></div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">خدماتنا</p>
+      <h2>ثلاث خدمات، فريق واحد يتابع ملفك</h2>
+      <p>كل خدمة لها مدير ملف مسؤول، وتقارير دورية تصلك دون أن تسأل عنها.</p>
+    </div>
+    <div class="services">
+      <article class="svc" id="svc-collect">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18M7 15h4"/></svg></div>
+        <span class="tag">خدمة 01 · للملاك والمستثمرين</span>
+        <h3>التحصيل</h3>
+        <ul>
+          <li>تحصيل الإيجارات الشهرية والسنوية نيابةً عن المالك</li>
+          <li>متابعة الدفعات المتأخرة وإرسال المطالبات المكتوبة</li>
+          <li>توثيق العقود وتجديدها ومتابعة مواعيد الاستحقاق</li>
+          <li>كشف حساب شهري لكل عقار وكل مستأجر</li>
+          <li>تحويل المبالغ المحصّلة إلى حسابك خلال أيام العمل المتفق عليها</li>
+        </ul>
+        <a class="more" href="#contact">ابدأ ملف تحصيل ←</a>
+      </article>
+
+      <article class="svc featured" id="svc-debt">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 3v18M5 7h14M5 7l-2.5 6h5Zm14 0-2.5 6h5Z"/></svg></div>
+        <span class="tag">خدمة 02 · للأفراد والشركات</span>
+        <h3>تخليص المديونيات</h3>
+        <ul>
+          <li>دراسة الملف وتقييم قوة المستندات قبل أي إجراء</li>
+          <li>التسوية الودية والتفاوض على السداد أو الجدولة</li>
+          <li>صياغة اتفاقيات التسوية وتوثيقها</li>
+          <li>متابعة المسار النظامي عبر الجهات المختصة عند الحاجة</li>
+          <li>إغلاق الملف بمخالصة نهائية موقّعة</li>
+        </ul>
+        <a class="more" href="#tools" data-tab="debt">قيّم ملفك الآن ←</a>
+      </article>
+
+      <article class="svc" id="svc-villa">
+        <div class="ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11 12 4l9 7v9H3Z"/><path d="M9 20v-6h6v6"/></svg></div>
+        <span class="tag">خدمة 03 · تسليم مفتاح</span>
+        <h3>بناء الفلل وتشطيبها</h3>
+        <ul>
+          <li>التصميم المعماري والإنشائي واستخراج الرخص</li>
+          <li>تنفيذ العظم بإشراف هندسي يومي</li>
+          <li>التمديدات الكهربائية والصحية والتكييف</li>
+          <li>التشطيب الكامل: أرضيات، دهانات، واجهات، مطابخ</li>
+          <li>تسليم المفتاح مع شهادة إتمام وضمانات مكتوبة</li>
+        </ul>
+        <a class="more" href="#villas">شاهد مراحل البناء ←</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- VILLA JOURNEY -->
+<section class="alt" id="villas">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">رحلة الفيلا</p>
+      <h2>من قطعة الأرض إلى المفتاح في يدك</h2>
+      <p>اختر مرحلة لترى ما يحدث فيها، ومدتها، وما تستلمه في نهايتها.</p>
+    </div>
+    <div class="phases">
+      <ul class="phase-list" role="tablist" id="phaseList" aria-label="مراحل بناء الفيلا"></ul>
+      <div class="phase-panel" role="tabpanel" id="phasePanel" aria-live="polite"></div>
+    </div>
+  </div>
+</section>
+
+<!-- SMART TOOLS -->
+<section id="tools">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">الأدوات الذكية</p>
+      <h2>احصل على تقدير مبدئي قبل أن تتصل بنا</h2>
+      <p>أرقام تقديرية تساعدك على التخطيط. التسعير النهائي يُعتمد بعد المعاينة ودراسة المخططات أو المستندات.</p>
+    </div>
+    <div class="tabs" role="tablist" aria-label="الأدوات">
+      <button role="tab" aria-selected="true" id="tab-villa" data-tab="villa">حاسبة تكلفة الفيلا</button>
+      <button role="tab" aria-selected="false" id="tab-debt" data-tab="debt">مقيّم ملف المديونية</button>
+    </div>
+
+    <!-- Villa calculator -->
+    <div class="tool" id="tool-villa">
+      <form class="sheet" id="villaForm" onsubmit="return false">
+        <div class="field">
+          <label for="area">مسطح البناء <output id="areaOut" class="num">400 م²</output></label>
+          <input type="range" id="area" min="150" max="1200" step="10" value="400">
+        </div>
+        <div class="field">
+          <label for="floors">عدد الأدوار <output id="floorsOut" class="num">2</output></label>
+          <input type="range" id="floors" min="1" max="3" step="1" value="2">
+        </div>
+        <div class="field">
+          <span class="lbl">مستوى التشطيب</span>
+          <div class="seg">
+            <label><input type="radio" name="level" id="lv1" value="eco"><span>اقتصادي<small>مواد محلية</small></span></label>
+            <label><input type="radio" name="level" id="lv2" value="mid" checked><span>متوسط<small>الأكثر طلباً</small></span></label>
+            <label><input type="radio" name="level" id="lv3" value="lux"><span>فاخر<small>مواد مستوردة</small></span></label>
+          </div>
+        </div>
+        <div class="field">
+          <span class="lbl">إضافات</span>
+          <div class="checks">
+            <label><span><input type="checkbox" id="exPool" value="85000">مسبح خارجي</span><small>85,000</small></label>
+            <label><span><input type="checkbox" id="exAnnex" value="60000">ملحق خارجي</span><small>60,000</small></label>
+            <label><span><input type="checkbox" id="exSolar" value="35000">نظام طاقة شمسية</span><small>35,000</small></label>
+            <label><span><input type="checkbox" id="exSmart" value="28000">منزل ذكي (إنارة وتحكم)</span><small>28,000</small></label>
+          </div>
+        </div>
+      </form>
+      <div class="result" aria-live="polite">
+        <div>
+          <div class="sub">التكلفة التقديرية (ريال)</div>
+          <div class="big" id="vCost">—</div>
+          <div class="sub" id="vRate"></div>
+        </div>
+        <div class="kv">
+          <div><b id="vMonths">—</b><span>مدة التنفيذ</span></div>
+          <div><b id="vRooms">—</b><span>غرف مقترحة</span></div>
+          <div><b id="vPerM">—</b><span>سعر المتر</span></div>
+        </div>
+        <div>
+          <div class="sub" style="margin-bottom:8px">توزيع التكلفة</div>
+          <div class="bar" id="vBar"></div>
+          <div class="legend" id="vLegend" style="margin-top:8px"></div>
+        </div>
+        <div>
+          <div class="sub" style="margin-bottom:4px">جدول الدفعات المقترح</div>
+          <div class="tbl-wrap"><table class="pay" id="vPay"></table></div>
+        </div>
+        <p class="note">تقدير مبدئي بأسعار مرجعية قابلة للتعديل، ولا يشمل قيمة الأرض.</p>
+      </div>
+    </div>
+
+    <!-- Debt evaluator -->
+    <div class="tool" id="tool-debt" hidden>
+      <form class="sheet" id="debtForm" onsubmit="return false">
+        <div class="field">
+          <span class="lbl">صفتك في الملف</span>
+          <div class="seg" style="grid-template-columns:1fr 1fr">
+            <label><input type="radio" name="side" value="creditor" checked><span>لي مستحقات<small>دائن</small></span></label>
+            <label><input type="radio" name="side" value="debtor"><span>عليّ مديونية<small>أريد تسوية</small></span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="amount">قيمة المديونية (ريال)</label>
+          <input type="number" id="amount" min="0" step="1000" value="180000" inputmode="numeric">
+        </div>
+        <div class="field">
+          <label for="age">عمر المديونية <output id="ageOut" class="num">8 أشهر</output></label>
+          <input type="range" id="age" min="1" max="60" value="8">
+        </div>
+        <div class="field">
+          <label for="docs">المستندات المتوفرة</label>
+          <select id="docs">
+            <option value="3">عقد موقّع + سندات أو شيكات</option>
+            <option value="2" selected>عقد موقّع فقط</option>
+            <option value="1">مراسلات أو فواتير</option>
+            <option value="0">لا توجد مستندات مكتوبة</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="contact">هل يتجاوب الطرف الآخر؟</label>
+          <select id="contact">
+            <option value="2">نعم، يتواصل ويعترف بالمبلغ</option>
+            <option value="1" selected>يتواصل أحياناً دون التزام</option>
+            <option value="0">لا يتجاوب نهائياً</option>
+          </select>
+        </div>
+      </form>
+      <div class="result" aria-live="polite">
+        <div>
+          <div class="sub">المسار المقترح</div>
+          <div class="big" id="dPath" style="font-family:var(--font-display)">—</div>
+          <div class="sub" id="dWhy"></div>
+        </div>
+        <div>
+          <div class="sub" style="display:flex;justify-content:space-between;margin-bottom:6px"><span>قوة الملف</span><b class="num" id="dScore">—</b></div>
+          <div class="meter"><i id="dMeter"></i></div>
+        </div>
+        <div class="kv">
+          <div><b id="dTime">—</b><span>المدة المتوقعة</span></div>
+          <div><b id="dInst">—</b><span>قسط شهري مقترح</span></div>
+          <div><b id="dMonthsInst">—</b><span>مدة الجدولة</span></div>
+        </div>
+        <div class="route">
+          <div class="sub">الخطوات التالية</div>
+          <ol id="dSteps"></ol>
+        </div>
+        <p class="note">تقييم أولي آلي، والرأي النهائي يصدر بعد مراجعة المستندات من فريقنا.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">لماذا تركواز</p>
+      <h2>ثبات اللون، ووضوح التعامل</h2>
+      <p>اخترنا اسم حجر يحافظ على لونه مهما طال الزمن، وهذا ما نعد به عملاءنا.</p>
+    </div>
+    <div class="values">
+      <div><b>عقد واضح</b><p>كل بند مكتوب: النطاق، المدة، الدفعات، والضمانات. لا تكاليف مفاجئة.</p></div>
+      <div><b>مدير ملف واحد</b><p>شخص واحد مسؤول عن ملفك من البداية إلى النهاية، ويرد على اتصالك.</p></div>
+      <div><b>تقارير دورية</b><p>صور أسبوعية من الموقع، وكشف تحصيل شهري، ومحضر لكل خطوة في ملف المديونية.</p></div>
+      <div><b>ضمانات مكتوبة</b><p>ضمان على الهيكل والعزل والتمديدات، مع زيارة صيانة بعد التسليم.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- IDENTITY -->
+<section id="identity">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">الهوية البصرية</p>
+      <h2>دليل هوية تركواز</h2>
+      <p>الشعار حجر تركواز بزاوية معيّن، يُقتطع منه بيت، وفي قلب البيت ثقب مفتاح. ثلاث خدمات في رمز واحد: القيمة، والعقار، والتسليم.</p>
+    </div>
+    <div class="idgrid">
+      <div class="idcard">
+        <h3>الشعار ونسخه</h3>
+        <div class="logos">
+          <div class="lg-main"><div class="lockup"><svg><use href="#mark"/></svg><span><b>تركواز</b><small>للعقارات والمقاولات</small></span></div></div>
+          <div class="lg-rev"><svg width="64" height="64" style="--mark-fill:var(--bg);--mark-cut:var(--turq-strong)"><use href="#mark"/></svg></div>
+          <div class="lg-turq"><svg width="64" height="64" style="--mark-fill:var(--on-turq);--mark-cut:var(--turq)"><use href="#mark"/></svg></div>
+        </div>
+        <h3 style="margin-top:6px">النقش المساند</h3>
+        <div class="pattern" role="img" aria-label="نقش هندسي مستوحى من المشربية"></div>
+        <p style="color:var(--muted);font-size:.9rem">نقش المعيّنات مأخوذ من المشربية، يُستخدم في الأغلفة واللوحات الإعلانية وحواجز المواقع.</p>
+      </div>
+      <div class="idcard">
+        <h3>الألوان <small style="color:var(--muted);font-weight:400;font-family:var(--font-body)">(اضغط للنسخ)</small></h3>
+        <div class="swatches" id="swatches"></div>
+        <h3>الخطوط</h3>
+        <div class="type-spec">
+          <div><small>خط العناوين والشعار</small><span style="font-family:var(--font-display);font-size:1.6rem">ريم كوفي · تركواز</span></div>
+          <div><small>خط النصوص</small><span style="font-size:1.05rem">IBM Plex Sans Arabic · نبني ونسلّم المفتاح</span></div>
+          <div><small>خط الأرقام والمقاسات</small><span class="num" style="font-size:1.05rem">18.50 m · 400 m² · 1,900</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="alt" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">الأسئلة الشائعة</p>
+      <h2>أسئلة يطرحها عملاؤنا</h2>
+    </div>
+    <div class="faq">
+      <details open><summary>كم تأخذ تركواز مقابل خدمة التحصيل؟</summary><p>نسبة متفق عليها من المبالغ المحصّلة فعلياً، تُحدد حسب عدد الوحدات وحجم المتأخرات. لا تدفع شيئاً على ما لم يُحصّل.</p></details>
+      <details><summary>هل تتعاملون مع المديونيات القديمة؟</summary><p>نعم. نبدأ بتقييم المستندات وعمر المديونية، ثم نقترح المسار المناسب: تسوية ودية، جدولة، أو متابعة نظامية عبر الجهات المختصة.</p></details>
+      <details><summary>هل يمكنني متابعة بناء فيلتي وأنا خارج المدينة؟</summary><p>نرسل تقريراً أسبوعياً بالصور ونسبة الإنجاز، وتستطيع زيارة الموقع بموعد مع المهندس المشرف في أي وقت.</p></details>
+      <details><summary>ماذا يشمل "تسليم المفتاح" بالضبط؟</summary><p>التصميم والرخص والعظم والتمديدات والتشطيب الكامل وتركيب الأدوات الصحية والإنارة والمطبخ، ثم التنظيف النهائي وتسليم المفتاح مع شهادة الإتمام والضمانات.</p></details>
+      <details><summary>هل أستطيع تعديل التصميم أثناء التنفيذ؟</summary><p>نعم، بأمر تغيير مكتوب يوضح أثر التعديل على التكلفة والمدة قبل تنفيذه.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="sec-head">
+      <p class="eyebrow">تواصل معنا</p>
+      <h2>أخبرنا بما تحتاجه، ونرد عليك خلال يوم عمل</h2>
+    </div>
+    <div class="contact">
+      <div class="cinfo">
+        <div class="crow"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><div><small>الهاتف / واتساب</small><b>+000 00 000 0000</b></div><button data-copy="+000 00 000 0000">نسخ</button></div>
+        <div class="crow"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><div><small>البريد الإلكتروني</small><b>info@turquoise.example</b></div><button data-copy="info@turquoise.example">نسخ</button></div>
+        <div class="crow"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s7-6 7-12a7 7 0 0 0-14 0c0 6 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg></span><div><small>المقر الرئيسي</small><b style="direction:rtl">اكتب عنوان المكتب هنا</b></div></div>
+        <div class="crow"><span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><div><small>ساعات العمل</small><b style="direction:rtl">الأحد – الخميس · 8 ص – 5 م</b></div></div>
+      </div>
+      <form class="sheet" id="contactForm" novalidate>
+        <div class="row2">
+          <div class="field"><label for="cName">الاسم</label><input type="text" id="cName" required autocomplete="name"></div>
+          <div class="field"><label for="cPhone">رقم الجوال</label><input type="tel" id="cPhone" required autocomplete="tel" dir="ltr"></div>
+        </div>
+        <div class="field">
+          <label for="cService">الخدمة المطلوبة</label>
+          <select id="cService">
+            <option>التحصيل</option>
+            <option>تخليص المديونيات</option>
+            <option>بناء فيلا وتسليم مفتاح</option>
+            <option>استشارة عامة</option>
+          </select>
+        </div>
+        <div class="field"><label for="cMsg">تفاصيل الطلب</label><textarea id="cMsg" placeholder="مثال: لدي أرض مساحتها 600 م² وأرغب ببناء فيلا دورين بتشطيب متوسط"></textarea></div>
+        <p id="cErr" class="note" style="color:var(--crit);opacity:1" hidden>أدخل اسمك ورقم جوالك لنتمكن من التواصل معك.</p>
+        <button class="btn btn-primary" type="submit" style="justify-self:start">أرسل الطلب</button>
+        <div class="ok-msg" id="cOk" hidden></div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#home"><svg><use href="#mark"/></svg><span><b>تركواز</b><small>للعقارات والمقاولات</small></span></a>
+    <span>© 2026 تركواز. جميع الحقوق محفوظة.</span>
+  </div>
+</footer>
+<div class="toast" id="toast" hidden></div>
+</div>
+
+<script>
+(function(){
+  const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+  const fmt=n=>Math.round(n).toLocaleString('en-US');
+
+  /* Theme toggle */
+  $('#themeBtn').addEventListener('click',()=>{
+    const r=document.documentElement;
+    const isDark=r.dataset.theme? r.dataset.theme==='dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+    r.dataset.theme=isDark?'light':'dark';
+    try{localStorage.setItem('tq-theme',r.dataset.theme)}catch(e){}
+  });
+  try{const t=localStorage.getItem('tq-theme'); if(t) document.documentElement.dataset.theme=t;}catch(e){}
+
+  /* Mobile menu */
+  const links=$('#links'), mb=$('#menuBtn');
+  mb.addEventListener('click',()=>{const o=links.classList.toggle('open');mb.setAttribute('aria-expanded',o)});
+  $$('#links a').forEach(a=>a.addEventListener('click',()=>{links.classList.remove('open');mb.setAttribute('aria-expanded','false')}));
+
+  /* Active section highlight */
+  const navMap={}; $$('#links a').forEach(a=>navMap[a.getAttribute('href').slice(1)]=a);
+  const io=new IntersectionObserver(es=>es.forEach(e=>{
+    if(e.isIntersecting && navMap[e.target.id]){Object.values(navMap).forEach(a=>a.classList.remove('active'));navMap[e.target.id].classList.add('active')}
+  }),{rootMargin:'-45% 0px -50% 0px'});
+  Object.keys(navMap).forEach(id=>{const el=document.getElementById(id); if(el) io.observe(el)});
+
+  /* Toast + copy */
+  let tt; function toast(m){const t=$('#toast');t.textContent=m;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,1800)}
+  function copy(text,btn){
+    const fallback=()=>{const s=getSelection(),r=document.createRange();const el=btn.previousElementSibling?.querySelector?.('b')||btn;r.selectNodeContents(el);s.removeAllRanges();s.addRange(r);toast('حدّد النص وانسخه')};
+    try{navigator.clipboard.writeText(text).then(()=>toast('تم النسخ: '+text),fallback)}catch(e){fallback()}
+  }
+  document.addEventListener('click',e=>{const b=e.target.closest('[data-copy]'); if(b) copy(b.dataset.copy,b)});
+
+  /* Villa phases */
+  const phases=[
+    {t:'المخطط والترخيص',w:'4–6 أسابيع',out:'مخططات معتمدة + رخصة بناء',pct:8,items:['رفع مساحي للأرض وفحص التربة','تصميم معماري وإنشائي وكهربائي وصحي','مراجعة التصميم معك حتى الاعتماد','استخراج رخصة البناء']},
+    {t:'الحفر والقواعد',w:'3–4 أسابيع',out:'قواعد وميدات بعزل كامل',pct:18,items:['تخطيط الموقع والحفر حسب تقرير التربة','صب الخرسانة العادية والقواعد المسلحة','عزل مائي وحراري للقواعد','ردم ودك على طبقات']},
+    {t:'العظم (الهيكل الخرساني)',w:'3–4 أشهر',out:'هيكل مكتمل ومستلم هندسياً',pct:42,items:['أعمدة وأسقف وسلالم مسلحة','مباني البلوك الخارجية والداخلية','اختبار مكعبات الخرسانة لكل صبة','عزل السطح']},
+    {t:'التمديدات',w:'6–8 أسابيع',out:'شبكات مختبرة وموثقة بالمخططات',pct:58,items:['تمديدات كهربائية وشبكة بيانات','تمديدات صحية وخزانات','تأسيس التكييف','اختبار الضغط والتسرب قبل الإغلاق']},
+    {t:'التشطيب',w:'3–5 أشهر',out:'فيلا جاهزة للسكن',pct:90,items:['لياسة ودهانات وجبس','أرضيات وتكسيات ورخام','أبواب ونوافذ ومطبخ','واجهات وإنارة وأدوات صحية']},
+    {t:'تسليم المفتاح',w:'أسبوع',out:'المفتاح + شهادة الإتمام + الضمانات',pct:100,items:['جولة استلام مع المالك وقائمة ملاحظات','معالجة الملاحظات وتنظيف نهائي','تسليم المخططات النهائية وكتيّب الصيانة','تسليم المفتاح وتفعيل الضمانات']}
+  ];
+  const pl=$('#phaseList'), pp=$('#phasePanel');
+  phases.forEach((p,i)=>{const li=document.createElement('li');li.innerHTML=`<button role="tab" id="ph${i}" aria-selected="${i===0}"><span class="n">${i+1}</span><span class="t">${p.t}</span></button>`;pl.appendChild(li)});
+  function showPhase(i){
+    const p=phases[i];
+    $$('#phaseList button').forEach((b,j)=>b.setAttribute('aria-selected',j===i));
+    pp.innerHTML=`<div class="phase-meta"><span class="pill">المرحلة ${i+1} من ${phases.length}</span><span class="pill brass">المدة: ${p.w}</span></div>
+      <h3>${p.t}</h3><ul>${p.items.map(x=>`<li>${x}</li>`).join('')}</ul>
+      <div><div style="display:flex;justify-content:space-between;font-size:.9rem;margin-bottom:6px"><span>نسبة الإنجاز بنهاية المرحلة</span><b class="num">${p.pct}%</b></div><div class="progress"><i style="width:${p.pct}%"></i></div></div>
+      <p><b>تستلم في نهايتها:</b> <span style="color:var(--muted)">${p.out}</span></p>`;
+  }
+  pl.addEventListener('click',e=>{const b=e.target.closest('button'); if(b) showPhase(+b.id.slice(2))});
+  pl.addEventListener('keydown',e=>{const btns=$$('#phaseList button');const i=btns.indexOf(document.activeElement);if(i<0)return;
+    let n=null; if(e.key==='ArrowDown'||e.key==='ArrowLeft')n=Math.min(i+1,btns.length-1); if(e.key==='ArrowUp'||e.key==='ArrowRight')n=Math.max(i-1,0);
+    if(n!==null){e.preventDefault();btns[n].focus();showPhase(n)}});
+  showPhase(0);
+
+  /* Tabs for tools */
+  function setTab(name){
+    $$('.tabs button').forEach(b=>b.setAttribute('aria-selected',b.dataset.tab===name));
+    $('#tool-villa').hidden=name!=='villa'; $('#tool-debt').hidden=name!=='debt';
+  }
+  document.addEventListener('click',e=>{const t=e.target.closest('[data-tab]'); if(t) setTab(t.dataset.tab)});
+
+  /* Villa calculator — reference rates per m² (edit to match your market) */
+  const RATES={eco:1450,mid:1900,lux:2650};
+  const SPLIT=[{k:'العظم',p:.4,c:'var(--bg)'},{k:'التمديدات',p:.15,c:'var(--turq-soft)'},{k:'التشطيب',p:.45,c:'var(--brass)'}];
+  const PAY=[['توقيع العقد',.10],['اكتمال القواعد',.15],['اكتمال العظم',.25],['اكتمال التمديدات',.15],['اكتمال التشطيب',.25],['تسليم المفتاح',.10]];
+  function calcVilla(){
+    const a=+$('#area').value, f=+$('#floors').value, lv=document.querySelector('input[name=level]:checked').value;
+    $('#areaOut').textContent=a+' م²'; $('#floorsOut').textContent=f;
+    const extras=$$('.checks input:checked').reduce((s,c)=>s+ +c.value,0);
+    const base=a*RATES[lv]*(f===3?1.04:1);
+    const total=base+extras;
+    $('#vCost').textContent=fmt(total*.93)+' – '+fmt(total*1.07);
+    $('#vRate').textContent='المتوسط: '+fmt(total)+' ريال';
+    const months=Math.round(8+a/110+(lv==='lux'?3:lv==='mid'?1:0)+(f-1));
+    $('#vMonths').textContent=months+' شهراً';
+    $('#vRooms').textContent=Math.max(3,Math.round(a/75));
+    $('#vPerM').textContent=fmt(total/a);
+    $('#vBar').innerHTML=SPLIT.map(s=>`<i style="width:${s.p*100}%;background:${s.c}"></i>`).join('');
+    $('#vLegend').innerHTML=SPLIT.map(s=>`<span><i style="background:${s.c}"></i>${s.k} ${fmt(base*s.p)}</span>`).join('')+(extras?`<span>الإضافات ${fmt(extras)}</span>`:'');
+    $('#vPay').innerHTML=PAY.map(([k,p])=>`<tr><td>${k} · ${p*100}%</td><td>${fmt(total*p)}</td></tr>`).join('');
+  }
+  $('#villaForm').addEventListener('input',calcVilla); calcVilla();
+
+  /* Debt evaluator */
+  function calcDebt(){
+    const amt=Math.max(0,+$('#amount').value||0), age=+$('#age').value, docs=+$('#docs').value, resp=+$('#contact').value;
+    const side=document.querySelector('input[name=side]:checked').value;
+    $('#ageOut').textContent=age+(age===1?' شهر':age<=10?' أشهر':' شهراً');
+    let score=docs*22+resp*10+(age<=6?14:age<=24?8:age<=36?3:0);
+    score=Math.min(100,Math.max(5,score));
+    $('#dScore').textContent=score+'/100';
+    const m=$('#dMeter'); m.style.width=score+'%'; m.style.background=score>=65?'var(--ok)':score>=40?'var(--warn)':'var(--crit)';
+    let path,why,time,steps,instMonths;
+    if(side==='debtor'){
+      path='تسوية وجدولة'; instMonths=amt>500000?24:amt>100000?12:6;
+      why='نتفاوض نيابةً عنك على خطة سداد واقعية تحميك من تصاعد المطالبة.';
+      time='2–6 أسابيع';
+      steps=['مراجعة المبلغ والمستندات وتحديد المستحق فعلاً','اقتراح خطة سداد تناسب دخلك','التفاوض مع الدائن وتوثيق الاتفاق','متابعة الأقساط حتى المخالصة النهائية'];
+    } else if(resp===2 && docs>=1){
+      path='تسوية ودية'; instMonths=amt>300000?12:6;
+      why='الطرف الآخر متجاوب والمستندات كافية، فالتسوية الودية أسرع وأقل تكلفة.';
+      time='2–6 أسابيع';
+      steps=['خطاب مطالبة رسمي بالمبلغ','جلسة تفاوض لتحديد السداد أو الجدولة','توقيع اتفاقية تسوية موثقة','متابعة التحصيل حتى المخالصة'];
+    } else if(docs>=2){
+      path='مطالبة ثم مسار نظامي'; instMonths=amt>300000?18:9;
+      why='المستندات قوية، لكن ضعف التجاوب يستدعي مهلة رسمية قبل التصعيد.';
+      time='2–6 أشهر';
+      steps=['إنذار رسمي بمهلة سداد محددة','محاولة تسوية أخيرة خلال المهلة','رفع الملف للجهة المختصة مع المستندات','متابعة التنفيذ وتحصيل المبلغ'];
+    } else {
+      path='تعزيز الملف أولاً'; instMonths=amt>300000?18:9;
+      why='المستندات الحالية ضعيفة؛ نبدأ بجمع ما يثبت المديونية قبل أي إجراء.';
+      time='3–9 أشهر';
+      steps=['حصر المراسلات والتحويلات والشهود','طلب إقرار مكتوب بالمبلغ من المدين','تسوية ودية بناءً على الإقرار','المسار النظامي إذا لم يتجاوب'];
+    }
+    $('#dPath').textContent=path; $('#dWhy').textContent=why; $('#dTime').textContent=time;
+    $('#dMonthsInst').textContent=instMonths+' شهراً';
+    $('#dInst').textContent=amt?fmt(amt/instMonths):'—';
+    $('#dSteps').innerHTML=steps.map(s=>`<li>${s}</li>`).join('');
+  }
+  $('#debtForm').addEventListener('input',calcDebt); $('#debtForm').addEventListener('change',calcDebt); calcDebt();
+
+  /* Swatches */
+  const SW=[['تركواز','#139A91'],['تركواز داكن','#0B5C57'],['حبر','#0E2A2B'],['حجر جيري','#F2F5F3'],['نحاسي','#A67A3D']];
+  $('#swatches').innerHTML=SW.map(([n,h])=>`<button class="sw" data-copy="${h}" type="button"><i style="background:${h}"></i><span><b>${n}</b><code>${h}</code></span></button>`).join('');
+
+  /* Contact form */
+  $('#contactForm').addEventListener('submit',e=>{
+    e.preventDefault();
+    const n=$('#cName').value.trim(), p=$('#cPhone').value.trim();
+    if(!n||!p){$('#cErr').hidden=false;(n?$('#cPhone'):$('#cName')).focus();return}
+    $('#cErr').hidden=true;
+    const ok=$('#cOk'); ok.textContent=`شكراً ${n}، سجّلنا طلبك لخدمة «${$('#cService').value}». سيتواصل معك مدير الملف خلال يوم عمل.`; ok.hidden=false;
+    e.target.reset();
+  });
+})();
+</script>
